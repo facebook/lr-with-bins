@@ -1,0 +1,166 @@
+# @noautodeps
+
+load("@fbcode_macros//build_defs:python_binary.bzl", "python_binary")
+load("@fbcode_macros//build_defs:python_library.bzl", "python_library")
+
+python_binary(
+    name = "LRBinsModelGlobalLocalFeatureImportanceExperiment",
+    srcs = ["experiments/LRBinsModelGlobalLocalFeatureImportanceExperiment/main.py"],
+    main_module = "fblearner.flow.projects.users.danielsjohnson.model_experiments.experiments.LRBinsModelGlobalLocalFeatureImportanceExperiment.main",
+    deps = [
+        "fbsource//third-party/pypi/sklearn:sklearn",
+        "fbsource//third-party/pypi/xgboost:xgboost",
+        ":LRBinsModel",
+        ":utils",
+    ],
+)
+
+python_binary(
+    name = "LRBinsModelOfflineExperiment",
+    srcs = ["experiments/LRBinsModelExperiment/main.py"],
+    main_module = "fblearner.flow.projects.users.danielsjohnson.model_experiments.experiments.LRBinsModelExperiment.main",
+    deps = [
+        "fbsource//third-party/pypi/sklearn:sklearn",
+        "fbsource//third-party/pypi/xgboost:xgboost",
+        ":LRBinsModel",
+        ":utils",
+    ],
+)
+
+python_binary(
+    name = "LRBinsModelAmountTrainingDataExperiment",
+    srcs = ["experiments/LRBinsModelAmountTrainingDataExperiment/main.py"],
+    main_module = "fblearner.flow.projects.users.danielsjohnson.model_experiments.experiments.LRBinsModelAmountTrainingDataExperiment.main",
+    deps = [
+        "fbsource//third-party/pypi/sklearn:sklearn",
+        "fbsource//third-party/pypi/xgboost:xgboost",
+        ":LRBinsModel",
+        ":utils",
+    ],
+)
+
+python_binary(
+    name = "TestLRBinsModel",
+    srcs = ["tests/TestLRBinsModel.py"],
+    main_module = "fblearner.flow.projects.users.danielsjohnson.model_experiments.tests.TestLRBinsModel",
+    deps = [
+        ":LRBinsModel",
+        ":tests",
+    ],
+)
+
+python_binary(
+    name = "TestEdgeBounds",
+    srcs = ["tests/TestEdgeBounds.py"],
+    main_module = "fblearner.flow.projects.users.danielsjohnson.model_experiments.tests.TestEdgeBounds",
+    deps = [
+        ":LRBinsModel",
+        ":tests",
+    ],
+)
+
+python_binary(
+    name = "TestHybridLRBinsModel",
+    srcs = ["tests/TestHybridLRBinsModel.py"],
+    main_module = "fblearner.flow.projects.users.danielsjohnson.model_experiments.tests.TestHybridLRBinsModel",
+    deps = [
+        ":LRBinsModel",
+        ":tests",
+    ],
+)
+
+python_binary(
+    name = "TestLRBinsModelSave",
+    srcs = ["tests/TestLRBinsModelSave.py"],
+    main_module = "fblearner.flow.projects.users.danielsjohnson.model_experiments.tests.TestLRBinsModelSave",
+    deps = [
+        ":LRBinsModel",
+        ":tests",
+    ],
+)
+
+python_binary(
+    name = "TestLRBinsModelBinThresh",
+    srcs = ["tests/TestLRBinsModelBinThresh.py"],
+    main_module = "fblearner.flow.projects.users.danielsjohnson.model_experiments.tests.TestLRBinsModelBinThresh",
+    deps = [
+        ":LRBinsModel",
+        ":tests",
+    ],
+)
+
+python_binary(
+    name = "TestRecursiveLRBinsModel",
+    srcs = ["tests/TestRecursiveLRBinsModel.py"],
+    main_module = "fblearner.flow.projects.users.danielsjohnson.model_experiments.tests.TestRecursiveLRBinsModel",
+    deps = [
+        ":RecursiveLRBinsModel",
+        ":tests",
+    ],
+)
+
+python_binary(
+    name = "TestLookup",
+    srcs = ["tests/TestLookup.py"],
+    main_module = "fblearner.flow.projects.users.danielsjohnson.model_experiments.tests.TestLookup",
+    deps = [
+        ":Lookup",
+        ":tests",
+    ],
+)
+
+python_library(
+    name = "tests",
+    srcs = [
+        "tests/Test.py",
+    ],
+    deps = [
+        ":utils",
+    ],
+)
+
+python_library(
+    name = "utils",
+    srcs = [
+        "utils.py",
+    ],
+    deps = [
+        "fbsource//third-party/pypi/sklearn:sklearn",
+    ],
+)
+
+python_library(
+    name = "LRBinsModel",
+    srcs = [
+        "models/LRBinsModel.py",
+        "models/Model.py",
+    ],
+    deps = [
+        "fbsource//third-party/pypi/torch:torch",
+        "fbsource//third-party/pypi/xgboost:xgboost",
+    ],
+)
+
+python_library(
+    name = "RecursiveLRBinsModel",
+    srcs = [
+        "models/Model.py",
+        "models/RecursiveLRBinsModel.py",
+    ],
+    deps = [
+        "fbsource//third-party/pypi/torch:torch",
+        "fbsource//third-party/pypi/xgboost:xgboost",
+    ],
+)
+
+python_library(
+    name = "Lookup",
+    srcs = [
+        "models/Lookup.py",
+        "models/Model.py",
+    ],
+    deps = [
+        "fbsource//third-party/pypi/torch:torch",
+        "fbsource//third-party/pypi/xgboost:xgboost",
+    ],
+)
